@@ -1,0 +1,429 @@
+/* Reset Básico e Fontes */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    overflow: hidden; /* Evita barras de rolagem durante a animação */
+}
+
+/* TELA DE INÍCIO */
+#inicio {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Grid de fotos no fundo */
+.background-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    opacity: 0.25;
+    filter: grayscale(0.5);
+    transform: scale(1.05);
+}
+
+.background-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Conteúdo central (título e botão) */
+.content {
+    position: relative;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+.content p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* ADICIONE ESTES NOVOS ESTILOS */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap; /* Garante que os botões se ajustem em telas menores */
+}
+
+.action-button {
+    /* Estilos base para todos os botões */
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Remove o sublinhado do link do vídeo */
+}
+
+.action-button:hover {
+    transform: scale(1.05);
+}
+
+.action-button i {
+    margin-right: 10px;
+}
+
+/* Cor do botão principal (Carta) */
+#abrir-carta {
+    background-color: #dd1919;
+}
+#abrir-carta:hover {
+    background-color: #b81616;
+}
+
+/* Cor do botão de Vídeo */
+.video-button {
+    background-color: #007bff; /* Azul */
+}
+.video-button:hover {
+    background-color: #0056b3;
+}
+
+/* Cor do botão Surpresa */
+.surprise-button {
+    background-color: #6f42c1; /* Roxo */
+}
+.surprise-button:hover {
+    background-color: #5a2d92;
+}
+
+
+/* TELA DA CARTA */
+#carta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    color: #333;
+    opacity: 0;
+    transition: opacity 1.5s 0.5s ease-in;
+    overflow: hidden;
+    background-color: #383025; /* Cor de madeira escura */
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+}
+
+.letter-content {
+    /* --- Seus estilos originais (mantidos) --- */
+    max-width: 800px;
+    text-align: justify;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    
+    /* --- NOVIDADES PARA O EFEITO DE CARTA --- */
+    
+    /* 1. Posição relativa para ancorar os elementos decorativos */
+    position: relative; 
+    overflow: hidden; /* Garante que as decorações não "vazem" */
+    
+    /* 2. Cor de fundo de papel antigo e textura */
+    background-color: #fdfaf2; /* Um tom de creme/papel */
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* Textura sutil */
+    
+    /* 3. Ajustes visuais para parecer mais com papel */
+    padding: 50px 60px; /* Mais espaço interno */
+    border-radius: 5px; /* Bordas menos perfeitas */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+}
+
+
+/* Seus outros estilos .letter-content h2, .signature, etc. continuam iguais */
+.letter-content h2, .signature {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+}
+
+.signature {
+    margin-top: 40px;
+    text-align: right;
+}
+
+.signature {
+    margin-top: 40px;
+    text-align: right;
+}
+
+/* Estilo para o cursor do Typed.js, caso esteja usando */
+.letter-content .typed-cursor {
+    color: #e91e63;
+    font-size: 1.5rem;
+}
+
+.signature {
+    margin-top: 40px;
+    text-align: right;
+}
+
+/* CLASSES DE CONTROLE (via JS) */
+.hidden {
+    display: none !important; /* CORREÇÃO: Adicionado !important para garantir a sobreposição */
+}
+
+#inicio.fade-out {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+#carta.fade-in {
+    opacity: 1;
+}
+
+/* --- ESTILOS DO BOTÃO DE MUDO --- */
+#mute-button {
+    position: fixed; /* Fica fixo na tela */
+    top: 20px;
+    right: 20px;
+    z-index: 999; /* Garante que fique acima de todo o conteúdo */
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 50%; /* Deixa o botão redondo */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#mute-button:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Estilo para os ícones SVG dentro do botão */
+#mute-button svg {
+    stroke: #ffffff; /* Cor dos ícones */
+    width: 24px;
+    height: 24px;
+}
+
+/* Lógica para mostrar/esconder os ícones */
+.icon-off {
+    display: none; /* O ícone de mudo começa escondido */
+}
+
+#mute-button.muted .icon-on {
+    display: none; /* Esconde o ícone de som quando o botão tem a classe .muted */
+}
+
+#mute-button.muted .icon-off {
+    display: block; /* Mostra o ícone de mudo quando o botão tem a classe .muted */
+}
+
+/* --- ESTILOS DO BOTÃO DE VOLTAR --- */
+#voltar-inicio {
+    position: absolute; /* Ancorado ao .letter-content que é relativo */
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10; /* Garante que fique acima do texto */
+}
+
+#voltar-inicio svg {
+    width: 28px;
+    height: 28px;
+    stroke: #888; /* Cor cinza escuro para o 'X' */
+    transition: stroke 0.2s ease, transform 0.2s ease;
+}
+
+#voltar-inicio:hover svg {
+    stroke: #000; /* Cor preta ao passar o mouse */
+    transform: rotate(90deg); /* Efeito de rotação sutil */
+}
+
+
+
+/* Elemento decorativo ::after (PENA DE ESCREVER) */
+#carta::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 250px;
+    height: 250px;
+    background-image: url('https://storage.googleapis.com/gemini-tool-content/9e7f8674d8174542d1e292021a8d011ff23b6af192bb3b2462e08832a5105342.png'); /* Imagem de uma pena */
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    /* Posição e rotação */
+    top: 25%;
+    right: 12%;
+    transform: rotate(25deg);
+    opacity: 0.8;
+}
+
+/* NOVOS ESTILOS PARA AS DECORAÇÕES (MAIS ESTÁVEIS) */
+.decoracao {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* z-index: 0; é o padrão, ficará atrás da carta */
+}
+
+/* ESTILOS GERAIS PARA ITENS POLAROID */
+.decoracao.polaroid-item {
+    background-color: #fff; /* Fundo branco para a borda */
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.4); /* Sombra suave */
+    width: 150px; /* Tamanho da foto */
+    height: 180px; /* Tamanho da foto */
+    padding: 15px 15px 60px 15px; /* Espaço para a borda branca inferior */
+    background-size: cover; /* Ajusta a imagem dentro do frame */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ESTILOS INDIVIDUAIS PARA CADA POLAROID */
+
+.decoracao.p-1 {
+    /* ATENÇÃO: TROQUE PELO CAMINHO DA SUA PRIMEIRA FOTO */
+    background-image: url('imagens/img1.jpg');
+    bottom: 10%;
+    left: 10%;
+    transform: rotate(-25deg);
+}
+
+.decoracao.p-2 {
+    /* ATENÇÃO: TROQUE PELO CAMINHO DA SUA SEGUNDA FOTO */
+    background-image: url('imagens/img2.jpg');
+    top: 20%;
+    left: 10%;
+    transform: rotate(10deg);
+}
+
+.decoracao.p-3 {
+    /* ATENÇÃO: TROQUE PELO CAMINHO DA SUA TERCEIRA FOTO */
+    background-image: url('imagens/img3.jpg');
+    bottom: 20%;
+    right: 10%;
+    transform: rotate(20deg);
+}
+
+.decoracao.p-4 {
+    /* ATENÇÃO: TROQUE PELO CAMINHO DA SUA QUARTA FOTO */
+    background-image: url('imagens/img4.jpg');
+    top: 5%;
+    right: 5%;
+    transform: rotate(-10deg);
+}
+
+/* --- ADICIONE ESTAS 3 NOVAS REGRAS PARA AS NOVAS POLAROIDS --- */
+
+.decoracao.p-5 {
+    /* ATENÇÃO: TROQUE PELO CAMINHO DA SUA QUINTA FOTO */
+    background-image: url('imagens/img5.jpg');
+    bottom: 2%;
+    left: 40%;
+    transform: rotate(-10deg);
+}
+
+
+.decoracao.p-7 {
+    /* ATENÇÃO: TROQUE PELO CAMINHO DA SUA SÉTIMA FOTO */
+    background-image: url('imagens/img7.jpg');
+    top: 3%;
+    left: 50%; /* Posição mais central */
+    transform: rotate(2deg); /* Quase reta, por cima das outras */
+    z-index: 1; /* Coloca esta polaroid acima das outras, mas abaixo da carta */
+}
+
+/* Garante que a carta fique SEMPRE por cima de TUDO */
+.letter-content {
+    position: relative;
+    z-index: 2; /* Aumentamos para 2 para garantir que fique acima da p-7 */
+    /* ...seus outros estilos de .letter-content... */
+}
+
+/* TELA DO VÍDEO */
+#tela-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 28%;      /* Diminuímos de 90% para 70% */
+    max-width: 650px;  /* Diminuímos de 800px para 650px */
+}
+#meu-video {
+    width: 100%;
+    border-radius: 10px;
+    position: relative; 
+    z-index: 1;
+}
+
+#fechar-video {
+    position: absolute;
+    top: 10px; /* Movido para dentro da tela */
+    right: 10px; /* Movido para dentro da tela */
+    background: rgba(0, 0, 0, 0.5); /* Fundo para melhor visibilidade */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    color: #fff;
+    font-size: 2rem; /* Tamanho do '×' */
+    line-height: 40px; /* Centraliza o '×' verticalmente */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 9999 !important; /* <-- ADICIONE OU MODIFIQUE PARA ESTA LINHA */
+}
+
+#fechar-video:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 480px) {
+    .content h1 {
+        font-size: 2.5rem; /* Reduz o tamanho do título em telas pequenas */
+    }
+
+    .content {
+        padding: 20px; /* Diminui o espaçamento interno no celular */
+    }
+}
